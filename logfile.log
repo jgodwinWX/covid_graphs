@@ -61,6 +61,9 @@ Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   self.obj[item] = s
+posx and posy should be finite values
+posx and posy should be finite values
+posx and posy should be finite values
 AL
 AK
 AZ

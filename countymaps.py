@@ -3,6 +3,8 @@ import numpy as np
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import matplotlib.dates as mdates
+import matplotlib.ticker as mtick
 import datetime
 
 # view all rows for troubleshooting purposes
@@ -27,6 +29,7 @@ covid_data = pd.read_csv('https://raw.githubusercontent.com/nytimes/covid-19-dat
 
 # compute the weekly cases
 today = covid_data['date'].values[-1]
+print(today)
 today_dt = datetime.datetime.strptime(today,'%Y-%m-%d')
 week_dt = today_dt - datetime.timedelta(days=7)
 weekago = datetime.datetime.strftime(week_dt,'%Y-%m-%d')
@@ -44,10 +47,6 @@ for ix,state in enumerate(states):
     if state == '02':
         state_df = state_df[state_df['GEOID']!='02016']
         weekly_data = weekly_data[weekly_data['fips']!='02016']
-
-    # clean up New York data
-    if state != '36':
-        continue
 
     # join the two dataframes
     merged_df = state_df.merge(weekly_data,how='left',left_on='GEOID',right_on='fips')
@@ -79,6 +78,30 @@ for ix,state in enumerate(states):
     # make a basic plot
     plt.savefig('/var/www/html/images/covid/countymaps/cases_%s.png' % state,bbox_inches='tight')
     plt.close('all')
-    if state == '36':
-        break
+
+# plot a couple of counties of interest
+county_code = ['22055','48439','48201','06085','48085','48113','48121','22005','22033']
+county_name = ['Lafayette, LA','Tarrant, TX','Harris, TX','Santa Clara, CA','Collin, TX','Dallas, TX','Denton, TX','Ascension, LA','East Baton Rouge, LA']
+for j,code in enumerate(county_code):
+    # get the county level case data
+    dataset = covid_data[covid_data['fips'] == code]
+    dataset['date'] = pd.to_datetime(dataset['date'],format='%Y-%m-%d')
+    dataset['dailycases'] = dataset['cases'].diff()
+    dataset['weeklycases'] = dataset['dailycases'].rolling(window=7).sum()
+
+    plt.clf()
+    fig,ax = plt.subplots()
+    ax.plot(dataset['date'],dataset['weeklycases'],marker='o',markevery=dataset['weeklycases'].size-1,color='blue')
+    plt.text(dataset['date'].values[-1],dataset['weeklycases'].values[-1],'{0:,.0f}'.format(dataset['weeklycases'].values[-1]),color='blue')
+    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    plt.grid(which='minor',axis='x',linestyle='--')
+    plt.grid(which='major',axis='y',linestyle='-')
+    plt.title('Week-over-Week COVID-19 Cases in County: %s\n(latest data: %s)' % (county_name[j],today))
+    plt.xlabel('Date')
+    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    ax.set_ylabel('Week-over-Week Cases')
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    plt.savefig('/var/www/html/images/covid/%s.png' % code,bbox_inches='tight')
 print('Done.')
