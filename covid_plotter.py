@@ -35,7 +35,7 @@ region10 = ['AK','ID','OR','WA']
 fema = [region1,region2,region3,region4,region5,region6,region7,region8,region9,region10]
 
 # download the data
-df = pandas.read_csv('https://covidtracking.com/api/v1/states/daily.csv',index_col='date')
+df = pandas.read_csv('https://api.covidtracking.com/v1/states/daily.csv',index_col='date')
 state_data = {}
 
 pop = pandas.read_csv('/home/jgodwin/python/covid/state_pop.csv',index_col='State')
