@@ -1,129 +1,89 @@
-/home/jgodwin/python/covid/covid_plotter.py:50: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['weeklyCases'] = data['positiveIncrease'][::-1].rolling(window=7).sum()[::-1]
-/home/jgodwin/python/covid/covid_plotter.py:51: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['weeklyDeaths'] = data['deathIncrease'][::-1].rolling(window=7).sum()[::-1]
 /home/jgodwin/python/covid/covid_plotter.py:52: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['weeklyTests'] = data['totalTestResultsIncrease'][::-1].rolling(window=7).sum()[::-1]
-/home/jgodwin/python/covid/covid_plotter.py:58: SettingWithCopyWarning: 
+  data['weeklyCases'] = data['positiveIncrease'][::-1].rolling(window=7).mean()[::-1]
+/home/jgodwin/python/covid/covid_plotter.py:53: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['weeklyHospital'] = data['hospitalizedIncrease'][::-1].rolling(window=7).sum()[::-1]
-/home/jgodwin/python/covid/covid_plotter.py:59: SettingWithCopyWarning: 
+  data['weeklyDeaths'] = data['deathIncrease'][::-1].rolling(window=7).mean()[::-1]
+/home/jgodwin/python/covid/covid_plotter.py:54: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['dailyPositivity'] = data['positiveIncrease']/data['totalTestResultsIncrease']
+  data['weeklyTests'] = data['totalTestResultsIncrease'][::-1].rolling(window=7).mean()[::-1]
 /home/jgodwin/python/covid/covid_plotter.py:60: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  data['weeklyPositivity'] = data['weeklyCases']/data['weeklyTests']
+  data['weeklyHospital'] = data['hospitalizedIncrease'][::-1].rolling(window=7).mean()[::-1]
+/home/jgodwin/python/covid/covid_plotter.py:61: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['dailyPositivity'] = data['positiveIncrease']/data['totalTestResultsIncrease']
 /home/jgodwin/python/covid/covid_plotter.py:62: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['weeklyPositivity'] = data['weeklyCases']/data['weeklyTests']
+/home/jgodwin/python/covid/covid_plotter.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   data['dailyPositivity'] = numpy.where((data['dailyPositivity'] > 1.0),numpy.nan,data['dailyPositivity'])
-/home/jgodwin/python/covid/covid_plotter.py:63: SettingWithCopyWarning: 
+/home/jgodwin/python/covid/covid_plotter.py:66: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['dailyPositivity'] = numpy.where((data['dailyPositivity'] < 0.0),numpy.nan,data['dailyPositivity'])
+/home/jgodwin/python/covid/covid_plotter.py:67: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] > 1.0),numpy.nan,data['weeklyPositivity'])
+/home/jgodwin/python/covid/covid_plotter.py:68: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] < 0.0),numpy.nan,data['weeklyPositivity'])
 /usr/local/lib/python3.6/dist-packages/pandas/plotting/_matplotlib/converter.py:103: FutureWarning: Using an implicitly registered datetime converter for a matplotlib plotting method. The converter was registered by pandas on import. Future versions of pandas will require you to explicitly register matplotlib converters.
 
 To register the converters:
 	>>> from pandas.plotting import register_matplotlib_converters
 	>>> register_matplotlib_converters()
   warnings.warn(msg, FutureWarning)
-posx and posy should be finite values
-posx and posy should be finite values
-posx and posy should be finite values
-/usr/local/lib/python3.6/dist-packages/pandas/core/indexing.py:494: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  self.obj[item] = s
-posx and posy should be finite values
-posx and posy should be finite values
-posx and posy should be finite values
 AL
-AK
-AZ
-AR
-CA
-CO
-CT
-DC
-DE
-FL
-GA
-HI
-ID
-IL
-IN
-IA
-KS
-KY
-LA
-ME
-MD
-MA
-MI
-MN
-MS
-MO
-MT
-NE
-NV
-NH
-NJ
-NM
-NY
-NC
-ND
-OH
-OK
-OR
-PA
-RI
-SC
-SD
-TN
-TX
-UT
-VT
-VA
-WA
-WV
-WI
-WY
-PR
-VI
-FEMA Region 1
-FEMA Region 2
-FEMA Region 3
-FEMA Region 4
-FEMA Region 5
-FEMA Region 6
-FEMA Region 7
-FEMA Region 8
-FEMA Region 9
-FEMA Region 10
+Traceback (most recent call last):
+  File "/home/jgodwin/python/covid/covid_plotter.py", line 124, in <module>
+    plt.savefig('/var/www/html/images/covid/severity_%s.png' % state,bbox_inches='tight')
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/pyplot.py", line 722, in savefig
+    res = fig.savefig(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/figure.py", line 2180, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/backend_bases.py", line 2067, in print_figure
+    bbox_extra_artists=bbox_artists)
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/figure.py", line 2367, in get_tightbbox
+    bbox = a.get_tightbbox(renderer)
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/axis.py", line 1162, in get_tightbbox
+    ticks_to_draw = self._update_ticks()
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/axis.py", line 1079, in _update_ticks
+    major_locs = self.get_majorticklocs()
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/axis.py", line 1324, in get_majorticklocs
+    return self.major.locator()
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/dates.py", line 1243, in __call__
+    return self.tick_values(dmin, dmax)
+  File "/usr/local/lib/python3.6/dist-packages/matplotlib/dates.py", line 1260, in tick_values
+    self.rule.set(dtstart=start, until=stop)
+KeyboardInterrupt

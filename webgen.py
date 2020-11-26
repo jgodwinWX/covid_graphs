@@ -37,12 +37,13 @@ for state in states:
     cell5 = '\t<td><a href="/images/covid/week_deaths_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n' % state
     cell6 = '\t<td><a href="/images/covid/week_testpos_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n' % state
     cell7 = '\t<td><a href="/images/covid/hospitalized_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n' % state
+    cell8 = '\t<td><a href="/images/covid/severity_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n' % state
     if state in ['DC','PR','VI']:
-        cell8 = '</tr>\n'
+        cell9 = '</tr>\n'
     else:
-        cell8 = '\t<td><a href="/images/covid/countymaps/cases_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n</tr>\n' % fips
+        cell9 = '\t<td><a href="/images/covid/countymaps/cases_%s.png"><button type="button" class="btn btn-info"></button></a></td>\n</tr>\n' % fips
 
-    text = text+statecell+cell1+cell2+cell3+cell4+cell5+cell6+cell7+cell8
+    text = text+statecell+cell1+cell2+cell3+cell7+cell4+cell5+cell6+cell8+cell9
 
     ix += 1
 

@@ -3,10 +3,11 @@
 	<td><a href="/images/covid/positive_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_AL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_AL.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_AL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_AL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_01.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -14,10 +15,11 @@
 	<td><a href="/images/covid/positive_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_AK.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_AK.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_AK.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_AK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_02.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -25,10 +27,11 @@
 	<td><a href="/images/covid/positive_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_AZ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_04.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -36,10 +39,11 @@
 	<td><a href="/images/covid/positive_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_AR.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_AR.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_AR.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_AR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_05.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -47,10 +51,11 @@
 	<td><a href="/images/covid/positive_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_CA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_CA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_CA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_CA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_06.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -58,10 +63,11 @@
 	<td><a href="/images/covid/positive_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_CO.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_CO.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_CO.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_CO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_08.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -69,10 +75,11 @@
 	<td><a href="/images/covid/positive_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_CT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_CT.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_CT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_CT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_09.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -80,21 +87,22 @@
 	<td><a href="/images/covid/positive_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_DC.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_DC.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_DC.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/countymaps/cases_11.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_DC.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
 	<th>Delaware</th>
 	<td><a href="/images/covid/positive_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_DE.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_DE.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_DE.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_DE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_10.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -102,10 +110,11 @@
 	<td><a href="/images/covid/positive_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_FL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_FL.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_FL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_FL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_12.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -113,10 +122,11 @@
 	<td><a href="/images/covid/positive_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_GA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_GA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_GA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_GA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_13.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -124,10 +134,11 @@
 	<td><a href="/images/covid/positive_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_HI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_HI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_HI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_HI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_15.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -135,10 +146,11 @@
 	<td><a href="/images/covid/positive_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_ID.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_ID.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_ID.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_ID.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_16.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -146,10 +158,11 @@
 	<td><a href="/images/covid/positive_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_IL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_IL.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_IL.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_IL.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_17.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -157,10 +170,11 @@
 	<td><a href="/images/covid/positive_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_IN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_IN.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_IN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_IN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_18.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -168,10 +182,11 @@
 	<td><a href="/images/covid/positive_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_IA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_IA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_IA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_IA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_19.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -179,10 +194,11 @@
 	<td><a href="/images/covid/positive_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_KS.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_KS.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_KS.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_KS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_20.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -190,10 +206,11 @@
 	<td><a href="/images/covid/positive_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_KY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_KY.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_KY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_KY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_21.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -201,10 +218,11 @@
 	<td><a href="/images/covid/positive_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_LA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_LA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_LA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_LA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_22.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -212,10 +230,11 @@
 	<td><a href="/images/covid/positive_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_ME.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_ME.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_ME.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_ME.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_23.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -223,10 +242,11 @@
 	<td><a href="/images/covid/positive_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MD.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MD.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MD.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_24.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -234,10 +254,11 @@
 	<td><a href="/images/covid/positive_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_25.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -245,10 +266,11 @@
 	<td><a href="/images/covid/positive_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_26.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -256,10 +278,11 @@
 	<td><a href="/images/covid/positive_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MN.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_27.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -267,10 +290,11 @@
 	<td><a href="/images/covid/positive_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MS.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MS.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MS.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MS.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_28.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -278,10 +302,11 @@
 	<td><a href="/images/covid/positive_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MO.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MO.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MO.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MO.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_29.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -289,10 +314,11 @@
 	<td><a href="/images/covid/positive_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_MT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_MT.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_MT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_MT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_30.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -300,10 +326,11 @@
 	<td><a href="/images/covid/positive_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NE.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NE.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NE.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NE.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_31.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -311,10 +338,11 @@
 	<td><a href="/images/covid/positive_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NV.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NV.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NV.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_32.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -322,10 +350,11 @@
 	<td><a href="/images/covid/positive_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NH.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NH.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NH.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_33.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -333,10 +362,11 @@
 	<td><a href="/images/covid/positive_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NJ.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_34.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -344,10 +374,11 @@
 	<td><a href="/images/covid/positive_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NM.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NM.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NM.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NM.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_35.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -355,10 +386,11 @@
 	<td><a href="/images/covid/positive_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NY.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_36.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -366,21 +398,23 @@
 	<td><a href="/images/covid/positive_NC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_NC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_NC.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_NC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_NC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_NC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_NC.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_NC.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/countymaps/cases_38.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_NC.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/countymaps/cases_37.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
 	<th>North Dakota</th>
 	<td><a href="/images/covid/positive_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_ND.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_ND.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_ND.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_ND.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_38.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -388,10 +422,11 @@
 	<td><a href="/images/covid/positive_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_OH.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_OH.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_OH.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_OH.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_39.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -399,10 +434,11 @@
 	<td><a href="/images/covid/positive_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_OK.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_OK.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_OK.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_OK.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_40.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -410,10 +446,11 @@
 	<td><a href="/images/covid/positive_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_OR.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_OR.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_OR.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_OR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_41.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -421,10 +458,11 @@
 	<td><a href="/images/covid/positive_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_PA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_PA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_PA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_PA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_42.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -432,10 +470,11 @@
 	<td><a href="/images/covid/positive_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_RI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_RI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_RI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_RI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_44.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -443,10 +482,11 @@
 	<td><a href="/images/covid/positive_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_SC.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_SC.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_SC.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_SC.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_45.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -454,10 +494,11 @@
 	<td><a href="/images/covid/positive_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_SD.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_SD.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_SD.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_SD.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_46.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -465,10 +506,11 @@
 	<td><a href="/images/covid/positive_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_TN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_TN.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_TN.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_TN.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_47.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -476,10 +518,11 @@
 	<td><a href="/images/covid/positive_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_TX.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_TX.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_TX.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_TX.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_48.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -487,10 +530,11 @@
 	<td><a href="/images/covid/positive_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_UT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_UT.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_UT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_UT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_49.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -498,10 +542,11 @@
 	<td><a href="/images/covid/positive_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_VT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_VT.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_VT.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_VT.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_50.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -509,10 +554,11 @@
 	<td><a href="/images/covid/positive_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_VA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_VA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_VA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_VA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_51.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -520,10 +566,11 @@
 	<td><a href="/images/covid/positive_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_WA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_WA.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_WA.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_WA.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_53.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -531,10 +578,11 @@
 	<td><a href="/images/covid/positive_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_WV.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_WV.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_WV.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_WV.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_54.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -542,10 +590,11 @@
 	<td><a href="/images/covid/positive_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_WI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_WI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_WI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_WI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_55.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -553,10 +602,11 @@
 	<td><a href="/images/covid/positive_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_WY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_WY.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_WY.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_WY.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/countymaps/cases_56.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#C8C8C8">
@@ -564,20 +614,20 @@
 	<td><a href="/images/covid/positive_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_PR.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_PR.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_PR.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/countymaps/cases_72.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_PR.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>
 <tr bgcolor="#FFFFFF">
 	<th>U.S. Virgin Islands</th>
 	<td><a href="/images/covid/positive_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/deaths_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/testpos_VI.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/hospitalized_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_positive_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_deaths_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 	<td><a href="/images/covid/week_testpos_VI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/hospitalized_VI.png"><button type="button" class="btn btn-info"></button></a></td>
-	<td><a href="/images/covid/countymaps/cases_78.png"><button type="button" class="btn btn-info"></button></a></td>
+	<td><a href="/images/covid/severity_VI.png"><button type="button" class="btn btn-info"></button></a></td>
 </tr>

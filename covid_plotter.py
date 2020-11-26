@@ -38,6 +38,8 @@ fema = [region1,region2,region3,region4,region5,region6,region7,region8,region9,
 df = pandas.read_csv('https://covidtracking.com/api/v1/states/daily.csv',index_col='date')
 state_data = {}
 
+pop = pandas.read_csv('/home/jgodwin/python/covid/state_pop.csv',index_col='State')
+
 plt.close('all')
 skip = False
 for state in states:
@@ -47,20 +49,23 @@ for state in states:
     # set the index as a datetime
     data.index = pandas.to_datetime(data.index,format='%Y%m%d')
     # create a week-over-week cases, deaths, and test column
-    data['weeklyCases'] = data['positiveIncrease'][::-1].rolling(window=7).sum()[::-1]
-    data['weeklyDeaths'] = data['deathIncrease'][::-1].rolling(window=7).sum()[::-1]
-    data['weeklyTests'] = data['totalTestResultsIncrease'][::-1].rolling(window=7).sum()[::-1]
+    data['weeklyCases'] = data['positiveIncrease'][::-1].rolling(window=7).mean()[::-1]
+    data['weeklyDeaths'] = data['deathIncrease'][::-1].rolling(window=7).mean()[::-1]
+    data['weeklyTests'] = data['totalTestResultsIncrease'][::-1].rolling(window=7).mean()[::-1]
     # filter some values in Louisiana where the state stopped reporting commercial lab data
     if state == 'LA':
         blockdates = pandas.date_range(start='2020-04-19',end='2020-04-25')
         data.loc[data.index.isin(blockdates),'weeklyCases'] = numpy.nan
         data.loc[data.index.isin(blockdates),'weeklyTests'] = numpy.nan
-    data['weeklyHospital'] = data['hospitalizedIncrease'][::-1].rolling(window=7).sum()[::-1]
+    data['weeklyHospital'] = data['hospitalizedIncrease'][::-1].rolling(window=7).mean()[::-1]
     data['dailyPositivity'] = data['positiveIncrease']/data['totalTestResultsIncrease']
     data['weeklyPositivity'] = data['weeklyCases']/data['weeklyTests']
 
+    # filter out positivity values >100% or <0% that can happen because of reporting issues
     data['dailyPositivity'] = numpy.where((data['dailyPositivity'] > 1.0),numpy.nan,data['dailyPositivity'])
+    data['dailyPositivity'] = numpy.where((data['dailyPositivity'] < 0.0),numpy.nan,data['dailyPositivity'])
     data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] > 1.0),numpy.nan,data['weeklyPositivity'])
+    data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] < 0.0),numpy.nan,data['weeklyPositivity'])
 
     # we want to save this off for later use
     state_data[state] = data
@@ -98,7 +103,28 @@ for state in states:
             plt.savefig('/var/www/html/images/covid/deaths_%s.png' % state,bbox_inches='tight')
         plt.clf()
 
-    # week-over-week plots
+    # severity index
+    severity = ((data['weeklyCases']/7.0 * data['weeklyPositivity'] * 100.0) / (pop['Population'][state]/1000000.0)) / 100.0
+    # plot severity index
+    fig,ax = plt.subplots()
+    plt.plot(severity,marker='o',markevery=severity.size,color='red')
+    plt.text(severity.index[0],severity.values[0],'{0:,.1f}'.format(severity.values[0]),color='red')
+    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    plt.grid(which='minor',axis='x',linestyle='--')
+    plt.grid(which='major',axis='y',linestyle='-')
+    plt.title('Outbreak Severity Index in %s\n(latest data: %s)' % (state_names[state],latest))
+    plt.xlabel('Date')
+    plt.ylim([0,300])
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    plt.ylabel('Severity Index')
+    # SAVE SEVERITY INDEX FIGURE ###
+    plt.savefig('/var/www/html/images/covid/severity_%s.png' % state,bbox_inches='tight')
+    plt.clf()
+
+    # weekly average numbers
     variables = [data['weeklyCases'],data['weeklyDeaths']]
     names = ['Cases','Deaths']
     for y in range(len(variables)):
@@ -111,21 +137,21 @@ for state in states:
         plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
         plt.grid(which='minor',axis='x',linestyle='--')
         plt.grid(which='major',axis='y',linestyle='-')
-        plt.title('Week-over-Week COVID-19 %s in %s\n(latest data: %s)' % (names[y],state_names[state],latest))
+        plt.title('7-Day Average COVID-19 %s in %s\n(latest data: %s)' % (names[y],state_names[state],latest))
         plt.xlabel('Date')
         ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
         # if we are on cases, we also want to plot tests
         if names[y] == 'Cases':
             # set up right axis
             ax2 = ax.twinx()
-            ax2.set_ylabel('Week-over-Week Tests')
+            ax2.set_ylabel('7-Day Average Tests')
             ax2.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
             # plot the tests
             ln2 = ax2.plot(data['weeklyTests'],label='Tests',marker='o',\
                 markevery=data['weeklyTests'].size,color='red')
             plt.text(data['weeklyTests'].index[0],data['weeklyTests'].values[0],'{0:,.0f}'.\
                 format(data['weeklyTests'].values[0]),color='red')
-            ax.set_ylabel('Week-over-Week Cases')
+            ax.set_ylabel('7-Day Average Cases')
             ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
             ax.xaxis.set_major_locator(mdates.MonthLocator())
             ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
@@ -141,7 +167,7 @@ for state in states:
             ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
             ax.xaxis.set_major_locator(mdates.MonthLocator())
             ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-            plt.ylabel('Week-over-Week Deaths')
+            plt.ylabel('7-Day Average Deaths')
             # WEEK-OVER-WEEK DEATHS
             plt.savefig('/var/www/html/images/covid/week_deaths_%s.png' % state,\
                 bbox_inches='tight')
@@ -156,7 +182,7 @@ for state in states:
     plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
     plt.grid(which='minor',axis='x',linestyle='--')
     plt.grid(which='major',axis='y',linestyle='-')
-    plt.title('Week-over-Week Test Positivity Rate in %s\n(latest data: %s)' % (state_names[state],latest))
+    plt.title('7-Day Average Test Positivity Rate in %s\n(latest data: %s)' % (state_names[state],latest))
     plt.xlabel('Date')
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     ax.xaxis.set_major_locator(mdates.MonthLocator())
@@ -169,7 +195,10 @@ for state in states:
 
     # currently hospitalized
     fig,ax = plt.subplots()
-    rects = ax.bar(x=data.index,height=data['hospitalizedCurrently'],color='blue')
+    if len(data['hospitalizedCurrently']) > 60:
+        rects = ax.bar(x=data.index[:60],height=data['hospitalizedCurrently'][:60],color='blue')
+    else:
+        rects = ax.bar(x=data.index,height=data['hospitalizedCurrently'],color='blue')
     plt.grid(which='major',axis='y',linestyle='-')
     plt.grid(which='both',axis='x',linestyle='--')
     plt.title('Daily COVID-19 Hospitalizations in %s\n(latest data: %s)' % (state_names[state],latest))
@@ -181,7 +210,7 @@ for state in states:
     for rect in rects:
         height = rect.get_height()
         ax.annotate('{0:,.0f}'.format(height),xy=(rect.get_x()+rect.get_width()/2,height),\
-            xytext=(0,3),textcoords='offset points',ha='center',va='bottom',rotation=90,size=8)
+            xytext=(0,3),textcoords='offset points',ha='center',va='bottom',rotation=90,size=6)
     plt.ylabel('Hospitalizations')
     ### SAVE DAILY HOSPITALIZATION FIGURE ###
     plt.savefig('/var/www/html/images/covid/hospitalized_%s.png' % state,bbox_inches='tight')

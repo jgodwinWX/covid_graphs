@@ -7,8 +7,9 @@ import matplotlib.dates as mdates
 import matplotlib.ticker as mtick
 import datetime
 
-# view all rows for troubleshooting purposes
-pd.set_option('display.max_rows',None)
+# debugging options
+pd.set_option('display.max_rows',50)
+debug = False
 
 # list of states and names
 states = ['01','02','04','05','06','08','09','10','12','13','15','16','17','18','19','20','21',\
@@ -26,6 +27,7 @@ statenames = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','C
 fp = '/home/jgodwin/python/covid/gis/cb_2018_us_county_500k.shp'
 map_df = gpd.read_file(fp)
 covid_data = pd.read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv',dtype={'fips':'str'})
+population_data = pd.read_csv('/home/jgodwin/python/covid/fipscodes.csv',dtype={'fips':'str'})
 
 # compute the weekly cases
 today = covid_data['date'].values[-1]
@@ -39,6 +41,8 @@ weekly_data = latest_data.merge(weekago_data,how='left',left_on='fips',right_on=
 weekly_data['weekcases'] = weekly_data['cases_x'] - weekly_data['cases_y']
 
 for ix,state in enumerate(states):
+    if debug and state != '22':
+        continue
     print(statenames[ix])
     # get the state GIS data
     state_df = map_df[map_df['STATEFP']==state]
@@ -50,9 +54,12 @@ for ix,state in enumerate(states):
 
     # join the two dataframes
     merged_df = state_df.merge(weekly_data,how='left',left_on='GEOID',right_on='fips')
+    # merge the data dataframe with the population dataframe
+    merged_df = merged_df.merge(population_data,how='left',left_on='GEOID',right_on='fips')
     merged_df = merged_df.fillna(0)
-
-    #print(merged_df.loc[merged_df['weekcases'].idxmax()]['NAME'],merged_df.loc[merged_df['weekcases'].idxmax()]['weekcases'])
+    
+    # compute cases per 1M people
+    merged_df['casesPer1M'] = merged_df['weekcases'] / (merged_df['Population']/1E6)
 
     # create the colorbar
     plt.clf()
@@ -60,15 +67,15 @@ for ix,state in enumerate(states):
     cmaplist = [cmap(i) for i in range(cmap.N)]
     cmaplist[0] = (0.5,0.5,0.5,1.0)
     cmap = mpl.colors.LinearSegmentedColormap.from_list('Custom cmap',cmaplist,cmap.N)
-    bounds = [0,1,5,10,50,100,500,1000,5000,10000,50000,100000]
+    bounds = [0,10,50,100,500,1000,2000,4000,6000,8000,10000,20000]
     norm = mpl.colors.BoundaryNorm(bounds,cmap.N)
 
     # create the plot
     plt.clf()
-    variable = 'weekcases'
+    variable = 'casesPer1M'
     fig,ax = plt.subplots(1,figsize=(24,12))
     ax.axis('off')
-    ax.set_title('COVID-19 Cases in Last 7 Days in %s (data as of %s)' % (statenames[ix],today))
+    ax.set_title('COVID-19 Cases per 1M people in Last 7 Days in %s (data as of %s)' % (statenames[ix],today))
     merged_df.plot(column=variable,cmap=cmap,norm=norm,linewidth=0.8,ax=ax,edgecolor='black')
 
     # plot the colorbar
@@ -79,9 +86,15 @@ for ix,state in enumerate(states):
     plt.savefig('/var/www/html/images/covid/countymaps/cases_%s.png' % state,bbox_inches='tight')
     plt.close('all')
 
+    if debug and state=='22':
+        break
+
 # plot a couple of counties of interest
-county_code = ['22055','48439','48201','06085','48085','48113','48121','22005','22033']
-county_name = ['Lafayette, LA','Tarrant, TX','Harris, TX','Santa Clara, CA','Collin, TX','Dallas, TX','Denton, TX','Ascension, LA','East Baton Rouge, LA']
+county_code = ['22055','48439','48201','06085','48085','48113','48121','22005','22033','04013',\
+    '06037','12086','12011','22071']
+county_name = ['Lafayette, LA','Tarrant, TX','Harris, TX','Santa Clara, CA','Collin, TX',\
+    'Dallas, TX','Denton, TX','Ascension, LA','East Baton Rouge, LA','Maricopa, AZ',\
+    'Los Angeles, CA','Miami-Dade, FL','Broward, FL','Orleans, LA']
 for j,code in enumerate(county_code):
     # get the county level case data
     dataset = covid_data[covid_data['fips'] == code]
