@@ -1,316 +1,246 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 29 15:27:30 2021
+
+@author: Jason W. Godwin
+"""
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.ticker as mtick
-import numpy
-import pandas
+import numpy as np
+import pandas as pd
 
-# list of states
+from sodapy import Socrata
 
-states = ['AL','AK','AZ','AR','CA','CO','CT','DC','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY',\
-    'LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH',\
-    'OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','PR','VI']
-state_names = {'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California'\
-    ,'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',\
-    'HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa','KS':'Kansas'\
-    ,'KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland','MA':'Massachusetts',\
-    'MI':'Michigan','MN':'Minnesota','MS':'Mississippi','MO':'Missouri','MT':'Montana',\
-    'NE':'Nebraska','NV':'Nevada','NH':'New Hampshire','NJ':'New Jersey','NM':'New Mexico'\
-    ,'NY':'New York','NC':'North Carolina','ND':'North Dakota','OH':'Ohio','OK':'Oklahoma'\
-    ,'OR':'Oregon','PA':'Pennsylvania','RI':'Rhode Island','SC':'South Carolina',\
-    'SD':'South Dakota','TN':'Tennessee','TX':'Texas','UT':'Utah','VT':'Vermont','VA':'Virginia'\
-    ,'WA':'Washington','WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming','PR':'Puerto Rico',\
-    'VI':'U.S. Virgin Islands','DC':'District of Columbia'}
+testmode = False
+savedir = '/var/www/html/images/covid'
+# how many days back to look at the data
+window = 180
 
-# FEMA regions
-region1 = ['CT','ME','MA','NH','VT','RI']
-region2 = ['NJ','NY']
-region3 = ['DE','MD','PA','VA','WV']
-region4 = ['AL','GA','FL','KY','MS','NC','SC','TN']
-region5 = ['IL','IN','MI','MN','OH','WI']
-region6 = ['AR','LA','NM','OK','TX']
-region7 = ['IA','KS','MO','NE']
-region8 = ['CO','MT','ND','SD','UT','WY']
-region9 = ['AZ','CA','HI','NV']
-region10 = ['AK','ID','OR','WA']
-fema = [region1,region2,region3,region4,region5,region6,region7,region8,region9,region10]
+# case and death data from the CDC
+client = Socrata('data.cdc.gov',None)
+results = client.get('9mfq-cb36',limit=50000)
+cases_df = pd.DataFrame.from_records(results)
+cases_df.sort_values('submission_date',inplace=True)
+cases_df['submission_date'] = pd.to_datetime(cases_df['submission_date'],\
+                                             format='%Y-%m-%dT%H:%M:%S.000')
+cases_df.set_index('submission_date',inplace=True)
+fields = ['tot_cases','new_case','tot_death','new_death']
+for field in fields:
+    cases_df[field] = pd.to_numeric(cases_df[field],errors='coerce',downcast='float')    
+cases_df['new_case'].mask(cases_df['new_case'] < 0,inplace=True)
+cases_df['new_death'].mask(cases_df['new_death'] < 0,inplace=True)
 
-# download the data
-df = pandas.read_csv('https://api.covidtracking.com/v1/states/daily.csv',index_col='date')
-state_data = {}
+# excess mortality data from the CDC
+em_results = client.get('xkkf-xrst',limit=50000)
+em = pd.DataFrame.from_records(em_results)
+fields= ['excess_lower_estimate','excess_higher_estimate']
+for field in fields:
+    em[field] = pd.to_numeric(em[field],errors='coerce',downcast='float')
+em['week_ending_date'] = pd.to_datetime(em['week_ending_date'],format='%Y-%m-%d')
+em.set_index('week_ending_date',inplace=True)
 
-pop = pandas.read_csv('/home/jgodwin/python/covid/state_pop.csv',index_col='State')
+# hospitalization data from HHS
+hhs_client = Socrata('healthdata.gov',None)
+hhs_results = hhs_client.get('g62h-syeh',limit=50000)
+hhs_df = pd.DataFrame.from_records(hhs_results)
+hhs_df.sort_values('date',inplace=True)
+hhs_df['date'] = pd.to_datetime(hhs_df['date'],format='%Y-%m-%dT%H:%M:%S.000')
+hhs_df.set_index('date',inplace=True)
+fields = ['inpatient_beds_used_covid','inpatient_bed_covid_utilization']
+for field in fields:
+    hhs_df[field] = pd.to_numeric(hhs_df[field],errors='coerce',downcast='float')
+hhs_df['inpatient_bed_covid_utilization'] = hhs_df['inpatient_bed_covid_utilization'] * 100.0
 
-plt.close('all')
-skip = False
+# case and death plots
+states = set(cases_df['state'])
+state_names = {'AK':'Alaska','AL':'Alabama','AR':'Arkansas','AS':'American Samoa','AZ':'Arizona',\
+               'CA':'California','CO':'Colorado','CT':'Connecticut','DC':'District of Columbia',\
+               'DE':'Delaware','FL':'Florida','FSM':'Federated States of Micronesia',\
+               'GA':'Georgia','GU':'Guam','HI':'Hawaii','IA':'Iowa','ID':'Idaho','IL':'Illinois',\
+               'IN':'Indiana','KS':'Kansas','KY':'Kentucky','LA':'Louisiana','MA':'Massachusetts',\
+               'MD':'Maryland','ME':'Maine','MI':'Michigan','MN':'Minnesota','MO':'Missouri',\
+               'MP':'Northern Mariana Islands','MS':'Mississippi','MT':'Montana',\
+               'NC':'North Carolina','ND':'North Dakota','NE':'Nebraska','NH':'New Hampshire',\
+               'NJ':'New Jersey','NM':'New Mexico','NV':'Nevada','NY':'New York',\
+               'NYC':'New York City','OH':'Ohio','OK':'Oklahoma','OR':'Oregon',\
+               'PA':'Pennsylvania','PR':'Puerto Rico','PW':'Palau','RI':'Rhode Island',\
+               'RMI':'Marshall Islands','SC':'South Carolina','SD':'South Dakota',\
+               'TN':'Tennessee','TX':'Texas','UT':'Utah','VA':'Virginia',\
+               'VI':'U.S. Virgin Islands','VT':'Vermont','WA':'Washington','WI':'Wisconsin',\
+               'WV':'West Virginia','WY':'Wyoming'}
+abbreviations = {'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',\
+               'Colorado':'CO','Connecticut':'CT','Delaware':'DE','District of Columbia':'DC',\
+               'Florida':'FL','Georgia':'GA','Hawaii':'HI','Idaho':'ID','Illinois':'IL',\
+               'Indiana':'IN','Iowa':'IA','Kansas':'KS','Kentucky':'KY','Louisiana':'LA',\
+               'Maine':'ME','Maryland':'MD','Massachusetts':'MA','Michigan':'MI','Minnesota':'MN',\
+               'Mississippi':'MS','Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV',\
+               'New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM','New York City':'NY',\
+               'New York':'NY','North Carolina':'NC','North Dakota':'ND','Ohio':'OH',\
+               'Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA','Puerto Rico':'PR',\
+               'Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD','Tennessee':'TN',\
+               'Texas':'TX','United States':'US','Utah':'UT','Vermont':'VT','Virginia':'VA',\
+               'Washington':'WA','West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY'}
+
+# skip the states/jurisdictions with incomplete data
+skipstates = ['RMI','AS','FSM','PW']
+
+# cumulative cases
 for state in states:
-    print(state)
-    # parse the data out by state
-    data = df[df['state']==state]
-    # set the index as a datetime
-    data.index = pandas.to_datetime(data.index,format='%Y%m%d')
-    # create a week-over-week cases, deaths, and test column
-    data['weeklyCases'] = data['positiveIncrease'][::-1].rolling(window=7).mean()[::-1]
-    data['weeklyDeaths'] = data['deathIncrease'][::-1].rolling(window=7).mean()[::-1]
-    data['weeklyTests'] = data['totalTestResultsIncrease'][::-1].rolling(window=7).mean()[::-1]
-    # filter some values in Louisiana where the state stopped reporting commercial lab data
-    if state == 'LA':
-        blockdates = pandas.date_range(start='2020-04-19',end='2020-04-25')
-        data.loc[data.index.isin(blockdates),'weeklyCases'] = numpy.nan
-        data.loc[data.index.isin(blockdates),'weeklyTests'] = numpy.nan
-    data['weeklyHospital'] = data['hospitalizedIncrease'][::-1].rolling(window=7).mean()[::-1]
-    data['dailyPositivity'] = data['positiveIncrease']/data['totalTestResultsIncrease']
-    data['weeklyPositivity'] = data['weeklyCases']/data['weeklyTests']
-
-    # filter out positivity values >100% or <0% that can happen because of reporting issues
-    data['dailyPositivity'] = numpy.where((data['dailyPositivity'] > 1.0),numpy.nan,data['dailyPositivity'])
-    data['dailyPositivity'] = numpy.where((data['dailyPositivity'] < 0.0),numpy.nan,data['dailyPositivity'])
-    data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] > 1.0),numpy.nan,data['weeklyPositivity'])
-    data['weeklyPositivity'] = numpy.where((data['weeklyPositivity'] < 0.0),numpy.nan,data['weeklyPositivity'])
-
-    # we want to save this off for later use
-    state_data[state] = data
-    latest = data.index[0].strftime('%m/%d')
-    if skip:
+    if testmode and state != 'TX':
         continue
-    # cumulative cases/deaths
-    variables = [data['positive'],data['death']]
-    names = ['Cases','Deaths']
-    for y in range(len(variables)):
-        fig,ax = plt.subplots()
-        plt.plot(variables[y],marker='o',markevery=variables[y].size,color='blue')
-        plt.text(variables[y].index[0],variables[y].values[0],'{0:,.0f}'.\
-            format(variables[y].values[0]),color='blue')
-        # aesthetics
+    if state in skipstates:
+        continue
+    print('%s: Cumulative' % state)
+    state_df = cases_df[cases_df['state']==state]
+    fig,ax = plt.subplots(figsize=(12,8))
+    plt.plot(state_df['tot_cases'],label='Total Cases',color='blue',marker='o',\
+             markevery=state_df['tot_cases'].size-1)
+    plt.text(state_df['tot_cases'].index[-1],state_df['tot_cases'][-1],'{0:,.0f}'.\
+             format(state_df['tot_cases'][-1]),color='blue')
+    plt.plot(state_df['tot_death'],label='Total Deaths',color='red',marker='o',\
+             markevery=state_df['tot_death'].size-1)
+    plt.text(state_df['tot_death'].index[-1],state_df['tot_death'][-1],'{0:,.0f}'.\
+             format(state_df['tot_death'][-1]),color='red')
+    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    plt.grid(which='minor',axis='x',linestyle='--')
+    plt.grid(which='major',axis='y',linestyle='-')
+    plt.title('Cumulative COVID-19 Cases and Deaths in %s' % state_names[state])
+    plt.xlabel('Date')
+    plt.xticks(rotation=30,ha='right')
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    plt.yscale('log')
+    plt.ylabel('Cases/Deaths (logarthmic)')
+    ax.yaxis.set_major_formatter(mtick.ScalarFormatter())
+    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    plt.legend(loc='lower right')
+    plt.savefig('%s/log_cases_%s.png' % (savedir,state.lower()),bbox_inches='tight')
+    plt.close(fig)
+
+# daily cases and deaths
+data = ['new_case','new_death']
+datasets = {'new_case':'Daily New Cases','new_death':'Daily New Deaths'}
+basicdata = {'new_case':'Cases','new_death':'Deaths'}
+
+for state in states:
+    for i in data:
+        if testmode and state != 'TX':
+            continue
+        if state in skipstates:
+            continue
+        print('%s: %s' % (state_names[state],datasets[i]))
+        state_df = cases_df[cases_df['state']==state]
+        # filter outlier values
+        if state_df[i].nlargest(5)[0] / state_df[i].nlargest(5)[4] >= 1.5:
+            state_df[i].mask(state_df[i] >= state_df[i].nlargest(5)[4] * 1.5,inplace=True)
+        # create the plots for daily cases
+        fig,ax = plt.subplots(figsize=(12,8))
+        plt.bar(state_df.index[-window:],state_df[i][-window:],color='blue',label=datasets[i])
+        plt.plot(state_df[i].rolling(window=7).mean()[-window:],color='red',\
+            label='7-Day Moving Average',marker='o',markevery=[-1])
+        plt.text(state_df.index[-1],state_df[i].rolling(window=7).mean()[-1],'{0:,.0f}'.\
+            format(state_df[i].rolling(window=7).mean()[-1]),color='red')
+        # plot aesthetics
         plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
         plt.grid(which='minor',axis='x',linestyle='--')
         plt.grid(which='major',axis='y',linestyle='-')
-        plt.title('Cumulative COVID-19 %s in %s\n(latest data: %s)' % (names[y],state_names[state],latest))
-        plt.xlabel('Date')
+        latest = state_df.index[-1].strftime('%d %b %y')
+        plt.title('Last %i Days of %s in %s\n(latest data: %s)' \
+            % (window,datasets[i],state_names[state],latest))
+        plt.xlabel('Report Date')
+        plt.ylabel(basicdata[i])
         ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
         ax.xaxis.set_major_locator(mdates.MonthLocator())
         ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-        if names[y] == 'Cases':
-            plt.yscale('log')
-            plt.ylabel('Cumulative Cases (log scale)')
-            ax.yaxis.set_major_formatter(mtick.ScalarFormatter())
+        plt.xticks(rotation=30,ha='right')
+        plt.legend(loc='upper right')
+        plt.savefig('%s/%s_%s.png' % (savedir,basicdata[i].lower(),state.lower()),\
+            bbox_inches='tight')
+        plt.close(fig)
+        
+# excess mortality plots
+states = set(em['state'])
+for state in states:
+    if testmode and state != 'Texas':
+        continue
+    print("%s: excess mortality" % state)
+    state_em = em[em['state']==state]
+    fig,ax1 = plt.subplots(figsize=(12,8))
+    ax2 = ax1.twinx()
+    ax1.plot(state_em['excess_lower_estimate'][-52:],color='blue',\
+        label='Weekly Excess Mortality (lower estimate)')
+    ax1.plot(state_em['excess_higher_estimate'][-52:],color='red',\
+        label='Weekly Excess Mortality (upper estimate)')
+    ax2.plot(state_em['excess_lower_estimate'][-52:].cumsum(),color='black',\
+        label='Cumulative Excess Mortality',marker='o',markevery=[-1])
+    plt.text(state_em.index[-1],state_em['excess_lower_estimate'][-52:].cumsum()[-1],'{0:,.0f}'.\
+        format(state_em['excess_lower_estimate'][-52:].cumsum()[-1]),color='black')
+    ax1.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    ax1.grid(which='minor',axis='x',linestyle='--')
+    ax1.grid(which='major',axis='y',linestyle='-')
+    plt.title('Last 52 Weeks Excess Mortality in %s\n(last few weeks may not be reported yet!)' \
+        % state)
+    ax1.set_xlabel('Month')
+    ax1.set_ylabel('Weekly Excess Deaths')
+    ax2.set_ylabel('Total Excess Deaths')
+    ax1.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    ax2.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b %y'))
+    ax1.xaxis.set_major_locator(mdates.MonthLocator())
+    ax1.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    ax1.legend(loc='upper left')
+    plt.savefig('%s/excess_%s.png' % (savedir,abbreviations[state].lower()),bbox_inches='tight')
+    plt.close(fig)
+    
+# hospitalization data
+states = set(hhs_df['state'])
+datasets = {'inpatient_beds_used_covid':'Inpatients currently hospitalized with COVID-19',
+            'inpatient_bed_covid_utilization':\
+                'Percentage of total inpatient beds with COVID-19 inpatients'}
+basicdata = {'inpatient_beds_used_covid':'Beds','inpatient_bed_covid_utilization':'Percent'}
+    
+for state in states:
+    for dataset in datasets:
+        if testmode and state != 'TX':
+            continue
+        if state in skipstates:
+            continue
+        print('%s: %s' % (state_names[state],dataset))
+        state_hhs = hhs_df[hhs_df['state']==state]
+        fig,ax = plt.subplots(figsize=(12,8))
+        plt.bar(state_hhs.index[-window:],state_hhs[dataset][-window:],color='blue',\
+            label=datasets[dataset])
+        plt.plot(state_hhs[dataset][-window:].rolling(window=7).mean(),color='red',\
+            label='7-Day Moving Average',marker='o',markevery=[-1])
+        # plot aesthetics
+        plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+        plt.grid(which='minor',axis='x',linestyle='--')
+        plt.grid(which='major',axis='y',linestyle='-')
+        latest = state_hhs.index[-1].strftime('%d %b %y')
+        plt.title('Last %i Days of %s in %s\n(latest data: %s)' \
+                  % (window,datasets[dataset],state_names[state],latest))
+        plt.xlabel('Report Date')
+        plt.ylabel(basicdata[dataset])
+        if dataset == 'inpatient_beds_used_covid':
             ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-            ### SAVE CUMULATIVE CASE FIGURE ###
-            plt.savefig('/var/www/html/images/covid/positive_%s.png' % state,bbox_inches='tight')
-        elif names[y] == 'Deaths':
-            plt.ylabel('Cumulative Deaths')
-            ### SAVE CUMULATIVE DEATH FIGURE ###
-            plt.savefig('/var/www/html/images/covid/deaths_%s.png' % state,bbox_inches='tight')
-        plt.clf()
-
-    # severity index
-    severity = ((data['weeklyCases']/7.0 * data['weeklyPositivity'] * 100.0) / (pop['Population'][state]/1000000.0)) / 100.0
-    # plot severity index
-    fig,ax = plt.subplots()
-    plt.plot(severity,marker='o',markevery=severity.size,color='red')
-    plt.text(severity.index[0],severity.values[0],'{0:,.1f}'.format(severity.values[0]),color='red')
-    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
-    plt.grid(which='minor',axis='x',linestyle='--')
-    plt.grid(which='major',axis='y',linestyle='-')
-    plt.title('Outbreak Severity Index in %s\n(latest data: %s)' % (state_names[state],latest))
-    plt.xlabel('Date')
-    plt.ylim([0,300])
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_major_locator(mdates.MonthLocator())
-    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-    plt.ylabel('Severity Index')
-    # SAVE SEVERITY INDEX FIGURE ###
-    plt.savefig('/var/www/html/images/covid/severity_%s.png' % state,bbox_inches='tight')
-    plt.clf()
-
-    # weekly average numbers
-    variables = [data['weeklyCases'],data['weeklyDeaths']]
-    names = ['Cases','Deaths']
-    for y in range(len(variables)):
-        # first we want to plot week-over-week cases/tests and deaths
-        fig,ax = plt.subplots()
-        # plot cases/deaths
-        ln1 = ax.plot(variables[y],label=names[y],marker='o',markevery=variables[y].size,color='blue')
-        plt.text(variables[y].index[0],variables[y].values[0],'{0:,.0f}'.\
-            format(variables[y].values[0]),color='blue')
-        plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
-        plt.grid(which='minor',axis='x',linestyle='--')
-        plt.grid(which='major',axis='y',linestyle='-')
-        plt.title('7-Day Average COVID-19 %s in %s\n(latest data: %s)' % (names[y],state_names[state],latest))
-        plt.xlabel('Date')
-        ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-        # if we are on cases, we also want to plot tests
-        if names[y] == 'Cases':
-            # set up right axis
-            ax2 = ax.twinx()
-            ax2.set_ylabel('7-Day Average Tests')
-            ax2.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-            # plot the tests
-            ln2 = ax2.plot(data['weeklyTests'],label='Tests',marker='o',\
-                markevery=data['weeklyTests'].size,color='red')
-            plt.text(data['weeklyTests'].index[0],data['weeklyTests'].values[0],'{0:,.0f}'.\
-                format(data['weeklyTests'].values[0]),color='red')
-            ax.set_ylabel('7-Day Average Cases')
-            ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-            ax.xaxis.set_major_locator(mdates.MonthLocator())
-            ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-            # logic for showing both lines in the legend
-            leg = ln1 + ln2
-            lab = [l.get_label() for l in leg]
-            ax.legend(leg,lab,loc='upper left')
-            ### SAVE WEEK-OVER-WEEK CASES/TESTS FIGURE ###
-            plt.savefig('/var/www/html/images/covid/week_positive_%s.png' % state,\
-                bbox_inches='tight')
-        # plot week-over-week deaths
-        elif names[y] == 'Deaths':
-            ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-            ax.xaxis.set_major_locator(mdates.MonthLocator())
-            ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-            plt.ylabel('7-Day Average Deaths')
-            # WEEK-OVER-WEEK DEATHS
-            plt.savefig('/var/www/html/images/covid/week_deaths_%s.png' % state,\
-                bbox_inches='tight')
-        plt.clf()
-
-    # plot week-over-week test positivity rate
-    fig,ax = plt.subplots()
-    plt.plot(data['weeklyPositivity'],marker='o',markevery=data['weeklyPositivity'].size,color='blue')
-    plt.text(data['weeklyPositivity'].index[0],data['weeklyPositivity'].values[0],'{:,.1%}'.\
-        format(data['weeklyPositivity'].values[0],color='blue'))
-    plt.axhspan(0.0,0.1,color='#C8FFC8',alpha=0.5)
-    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
-    plt.grid(which='minor',axis='x',linestyle='--')
-    plt.grid(which='major',axis='y',linestyle='-')
-    plt.title('7-Day Average Test Positivity Rate in %s\n(latest data: %s)' % (state_names[state],latest))
-    plt.xlabel('Date')
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_major_locator(mdates.MonthLocator())
-    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-    ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
-    plt.ylabel('Test Positivity Rate')
-    # SAVE WEEK-OVER-WEEK TEST POSITIVITY FIGURE ###
-    plt.savefig('/var/www/html/images/covid/week_testpos_%s.png' % state,bbox_inches='tight')
-    plt.clf()
-
-    # currently hospitalized
-    fig,ax = plt.subplots()
-    if len(data['hospitalizedCurrently']) > 60:
-        rects = ax.bar(x=data.index[:60],height=data['hospitalizedCurrently'][:60],color='blue')
-    else:
-        rects = ax.bar(x=data.index,height=data['hospitalizedCurrently'],color='blue')
-    plt.grid(which='major',axis='y',linestyle='-')
-    plt.grid(which='both',axis='x',linestyle='--')
-    plt.title('Daily COVID-19 Hospitalizations in %s\n(latest data: %s)' % (state_names[state],latest))
-    plt.xlabel('Date')
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_major_locator(mdates.MonthLocator())
-    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-    for rect in rects:
-        height = rect.get_height()
-        ax.annotate('{0:,.0f}'.format(height),xy=(rect.get_x()+rect.get_width()/2,height),\
-            xytext=(0,3),textcoords='offset points',ha='center',va='bottom',rotation=90,size=6)
-    plt.ylabel('Hospitalizations')
-    ### SAVE DAILY HOSPITALIZATION FIGURE ###
-    plt.savefig('/var/www/html/images/covid/hospitalized_%s.png' % state,bbox_inches='tight')
-    plt.clf()
-
-    # test-positivity
-    fig,ax = plt.subplots()
-    plt.plot(data['dailyPositivity'],marker='o',markevery=data['dailyPositivity'].size,color='blue')
-    plt.text(data['dailyPositivity'].index[0],data['dailyPositivity'].values[0],'{:,.1%}'.\
-        format(data['dailyPositivity'].values[0],color='blue'))
-    plt.axhspan(0.0,0.1,color='#C8FFC8',alpha=0.5)
-    # aesthetics
-    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
-    plt.grid(which='minor',axis='x',linestyle='--')
-    plt.grid(which='major',axis='y',linestyle='-')
-    plt.title('Daily Test Positivity Rate in %s\n(latest data: %s)' % (state_names[state],latest))
-    plt.xlabel('Date')
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_major_locator(mdates.MonthLocator())
-    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-    ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
-    plt.ylabel('Test Positivity Rate')
-    ### SAVE DAILY TEST-POSITIVITY FIGURE ###
-    plt.savefig('/var/www/html/images/covid/testpos_%s.png' % state,bbox_inches='tight')
-    plt.clf()
-
-    plt.close('all')
-
-# FEMA regions
-
-for ix,region in enumerate(fema):
-    print('FEMA Region %s' % str(ix+1))
-    # cumulative cases/deaths
-    variables = ['positive','death']
-    names = ['Cases','Deaths']
-    for y in range(len(variables)):
-        fig,ax = plt.subplots()
-        for state in region:
-            ln = ax.plot(state_data[state][variables[y]],label=state,marker='o',\
-                markevery=state_data[state][variables[y]].size)
-            plt.text(state_data[state][variables[y]].index[0],state_data[state][variables[y]].\
-                values[0],'{0:,.0f}'.format(state_data[state][variables[y]].values[0]),\
-                color=ln[0].get_color(),size=8)
-        # aesthetics
-        region_data = pandas.concat([state_data[x] for x in region],axis=0)
-        region_data_plot = region_data.groupby(region_data.index)[variables[y]].sum().\
-            reset_index(name=variables[y]).set_index('date')
-        plt.plot(region_data_plot,label='Region Total',color='k',linewidth=2,marker='o',\
-            markevery=region_data_plot.size)
-        plt.text(region_data_plot.index[-1],region_data_plot.values[-1],'{0:,.0f}'.\
-            format(float(region_data_plot.values[-1])),color='k')
-        plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
-        plt.grid(which='minor',axis='x',linestyle='--')
-        plt.grid(which='major',axis='y',linestyle='-')
-        plt.title('Cumulative COVID-19 %s in FEMA Region %d' % (names[y],ix+1))
-        plt.xlabel('Date')
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+            plt.text(state_hhs.index[-1],state_hhs[dataset][-1]+state_hhs[dataset][-1]*0.1,\
+                '{0:,.0f}'.format(state_hhs[dataset][-1]),color='red')
+        elif dataset == 'inpatient_bed_covid_utilization':
+            plt.text(state_hhs.index[-1],state_hhs[dataset][-1]+2,'{0:,.1f}%'.\
+                format(state_hhs[dataset][-1]),color='red')
+            ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+            plt.ylim([0,100])
+            plt.yticks(np.arange(0,101,5))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
         ax.xaxis.set_major_locator(mdates.MonthLocator())
         ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-        ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-        ax.legend(loc='upper left')
-        if names[y] == 'Cases':
-            plt.yscale('log')
-            plt.ylabel('Cumulative Cases (log scale)')
-            ax.yaxis.set_major_formatter(mtick.ScalarFormatter())
-            ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-            ### SAVE FEMA REGION CASES FIGURE ###
-            plt.savefig('/var/www/html/images/covid/positive_fema_%s.png' % str(ix+1).zfill(2),\
-                bbox_inches='tight')
-        elif names[y] == 'Deaths':
-            plt.ylabel('Cumulative Deaths')
-            ### SAVE FEMA REGION DEATHS FIGURE ###
-            plt.savefig('/var/www/html/images/covid/deaths_fema_%s.png' % str(ix+1).zfill(2),\
-                bbox_inches='tight')
-        plt.clf()
-
-    # hospitalized
-    fig,ax = plt.subplots()
-    region_data_hos = region_data.groupby(region_data.index)['hospitalizedCurrently'].sum().\
-        reset_index(name='hospitalizedCurrently').set_index('date')
-    fema_rects = ax.bar(x=region_data_hos.index,height=region_data_hos['hospitalizedCurrently'])
-    plt.grid(which='major',axis='y',linestyle='-')
-    plt.grid(which='both',axis='x',linestyle='--')
-    plt.title('COVID-19 Hospitalizations in FEMA Region %s' % str(ix+1).zfill(2))
-    plt.xlabel('Date')
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
-    ax.xaxis.set_major_locator(mdates.MonthLocator())
-    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
-    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-    for rect in fema_rects:
-        height = rect.get_height()
-        ax.annotate('{0:,.0f}'.format(height),xy=(rect.get_x()+rect.get_width()/2,height),\
-            xytext=(0,3),textcoords='offset points',ha='center',va='bottom',rotation=90,size=8)
-    plt.ylabel('Hospitalizations')
-    ### SAVE FEMA REGION HOSPITALIZATIONS FIGURE ###
-    plt.savefig('/var/www/html/images/covid/hospitalized_fema_%s.png' % str(ix+1).zfill(2),\
-        bbox_inches='tight')
-    plt.clf()
-
-    plt.close('all')
-
-# compute some stuff
-dailytopfive = df.set_index("state", append=True).groupby(level=0)["positiveIncrease"].nlargest(5)
+        plt.xticks(rotation=30,ha='right')
+        plt.legend(loc='upper right')
+        plt.savefig('%s/%s_%s.png' % (savedir,basicdata[dataset].lower(),state.lower()),bbox_inches='tight')
+        plt.close(fig)
+        
+print('Done')
