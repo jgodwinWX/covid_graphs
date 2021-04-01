@@ -1,8 +1,8 @@
 # COVID Graphs
 
-To Do List:
-- Update the webpage.
-- Get testing data.
+April 01, 2021 Update:
+
+The code is back up and running! Data is now being pulled from the APIs from the CDC and HHS (see below).
 
 March 30, 2021 Update:
 
@@ -19,5 +19,4 @@ countymaps.py: This script pulls data from the [New York Times GitHub](https://g
 then uses a state population CSV (included here as fipscodes.csv) to compute and then map the cases per one million
 residents for each county, with a different map for each state. This uses a different data source that is still being updated and should be okay.
 
-webgen.py: This script creates some basic HTML that can be pasted into a webpage [such as the one on my website](http://jasonsweathercenter.com/covid.html). Note that
-this has not been updated with the new scripts yet.
+webgen.py: This script creates some basic HTML that can be pasted into a webpage [such as the one on my website](http://jasonsweathercenter.com/covid.html).
