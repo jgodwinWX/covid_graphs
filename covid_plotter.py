@@ -15,6 +15,7 @@ from sodapy import Socrata
 
 # testing options
 testmode = False        # limit results to one state in order to test?
+teststate = 'TX'        # state to test on if running a single state
 runcumulative = True    # run the cumulative cases/deaths plots?
 runcasedeath = True     # run the daily cases/deaths plots?
 runexcess = True        # run the excess mortality plots?
@@ -80,7 +81,7 @@ state_names = {'AK':'Alaska','AL':'Alabama','AR':'Arkansas','AS':'American Samoa
                'MD':'Maryland','ME':'Maine','MI':'Michigan','MN':'Minnesota','MO':'Missouri',\
                'MP':'Northern Mariana Islands','MS':'Mississippi','MT':'Montana',\
                'NC':'North Carolina','ND':'North Dakota','NE':'Nebraska','NH':'New Hampshire',\
-               'NJ':'New Jersey','NM':'New Mexico','NV':'Nevada','NY':'New York',\
+               'NJ':'New Jersey','NM':'New Mexico','NV':'Nevada','NY':'New York (outside NYC)',\
                'NYC':'New York City','OH':'Ohio','OK':'Oklahoma','OR':'Oregon',\
                'PA':'Pennsylvania','PR':'Puerto Rico','PW':'Palau','RI':'Rhode Island',\
                'RMI':'Marshall Islands','SC':'South Carolina','SD':'South Dakota',\
@@ -93,7 +94,7 @@ abbreviations = {'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','Ca
                'Indiana':'IN','Iowa':'IA','Kansas':'KS','Kentucky':'KY','Louisiana':'LA',\
                'Maine':'ME','Maryland':'MD','Massachusetts':'MA','Michigan':'MI','Minnesota':'MN',\
                'Mississippi':'MS','Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV',\
-               'New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM','New York City':'NY',\
+               'New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM','New York City':'NYC',\
                'New York':'NY','North Carolina':'NC','North Dakota':'ND','Ohio':'OH',\
                'Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA','Puerto Rico':'PR',\
                'Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD','Tennessee':'TN',\
@@ -107,9 +108,7 @@ skipstates = ['RMI','AS','FSM','PW','MH']
 for state in states:
     if not runcumulative:
         break
-    if testmode and state != 'TX':
-        continue
-    if state in skipstates:
+    if testmode and state != teststate or state in skipstates:
         continue
     print('%s: Cumulative' % state)
     state_df = cases_df[cases_df['state']==state]
@@ -148,9 +147,7 @@ for state in states:
     if not runcasedeath:
         break
     for i in data:
-        if testmode and state != 'TX':
-            continue
-        if state in skipstates:
+        if testmode and state != teststate or state in skipstates:
             continue
         print('%s: %s' % (state_names[state],datasets[i]))
         state_df = cases_df[cases_df['state']==state]
