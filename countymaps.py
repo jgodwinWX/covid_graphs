@@ -12,7 +12,7 @@ window = 180
 
 # debugging options
 pd.set_option('display.max_rows',50)
-debug = True
+debug = False
 
 # list of states and names
 states = ['01','02','04','05','06','08','09','10','12','13','15','16','17','18','19','20','21',\
@@ -119,6 +119,7 @@ for j,code in enumerate(county_code):
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
     ax.xaxis.set_major_locator(mdates.MonthLocator())
     ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    plt.legend(loc='upper right')
     plt.savefig('/var/www/html/images/covid/%s.png' % code,bbox_inches='tight')
     plt.close(fig)
 print('Done.')
