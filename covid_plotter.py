@@ -13,7 +13,15 @@ import pandas as pd
 
 from sodapy import Socrata
 
-testmode = False
+# testing options
+testmode = False        # limit results to one state in order to test?
+runcumulative = True    # run the cumulative cases/deaths plots?
+runcasedeath = True     # run the daily cases/deaths plots?
+runexcess = True        # run the excess mortality plots?
+runhospital = True      # run the hospitalizations plots?
+runtesting = True       # run the total test plots?
+runpositivity = True    # run the positivity plots?
+
 savedir = '/var/www/html/images/covid'
 # how many days back to look at the data
 window = 180
@@ -53,6 +61,15 @@ for field in fields:
     hhs_df[field] = pd.to_numeric(hhs_df[field],errors='coerce',downcast='float')
 hhs_df['inpatient_bed_covid_utilization'] = hhs_df['inpatient_bed_covid_utilization'] * 100.0
 
+# testing data from HHS
+testing_results = hhs_client.get('j8mb-icvb',limit=70000)
+testing_df = pd.DataFrame.from_records(testing_results)
+testing_df.sort_values('date',inplace=True)
+testing_df['date'] = pd.to_datetime(testing_df['date'],format='%Y-%m-%dT%H:%M:%S.000')
+testing_df.set_index('date',inplace=True)
+testing_df['new_results_reported'] = pd.to_numeric(testing_df['new_results_reported'],\
+    errors='coerce',downcast='float')
+
 # case and death plots
 states = set(cases_df['state'])
 state_names = {'AK':'Alaska','AL':'Alabama','AR':'Arkansas','AS':'American Samoa','AZ':'Arizona',\
@@ -84,10 +101,12 @@ abbreviations = {'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','Ca
                'Washington':'WA','West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY'}
 
 # skip the states/jurisdictions with incomplete data
-skipstates = ['RMI','AS','FSM','PW']
+skipstates = ['RMI','AS','FSM','PW','MH']
 
 # cumulative cases
 for state in states:
+    if not runcumulative:
+        break
     if testmode and state != 'TX':
         continue
     if state in skipstates:
@@ -126,6 +145,8 @@ datasets = {'new_case':'Daily New Cases','new_death':'Daily New Deaths'}
 basicdata = {'new_case':'Cases','new_death':'Deaths'}
 
 for state in states:
+    if not runcasedeath:
+        break
     for i in data:
         if testmode and state != 'TX':
             continue
@@ -165,6 +186,8 @@ for state in states:
 # excess mortality plots
 states = set(em['state'])
 for state in states:
+    if not runexcess:
+        break
     if testmode and state != 'Texas':
         continue
     print("%s: excess mortality" % state)
@@ -204,6 +227,8 @@ datasets = {'inpatient_beds_used_covid':'Inpatients currently hospitalized with 
 basicdata = {'inpatient_beds_used_covid':'Beds','inpatient_bed_covid_utilization':'Percent'}
     
 for state in states:
+    if not runhospital:
+        break
     for dataset in datasets:
         if testmode and state != 'TX':
             continue
@@ -242,5 +267,79 @@ for state in states:
         plt.legend(loc='upper right')
         plt.savefig('%s/%s_%s.png' % (savedir,basicdata[dataset].lower(),state.lower()),bbox_inches='tight')
         plt.close(fig)
-        
+
+# total testing
+for state in set(testing_df['state']):
+    if not runtesting:
+        break
+    if testmode and state != 'TX' or state in skipstates:
+        continue
+    print('%s: testing' % state)
+    tests = testing_df[(testing_df['state']==state)]['new_results_reported'].groupby(['date'])\
+        .sum()
+    fig,ax = plt.subplots(figsize=(12,8))
+    plt.bar(tests.index[-window:],tests[-window:],color='blue',label='Total Tests Conducted')
+    plt.plot(tests[-window:].rolling(window=7).mean(),color='red',label='7-Day Moving Average',\
+        marker='o',markevery=[-1])
+    # plot aesthetics
+    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    plt.grid(which='minor',axis='x',linestyle='--')
+    plt.grid(which='major',axis='y',linestyle='-')
+    latest = tests.index[-1].strftime('%d %b %y')
+    plt.title('Last %i Days of Tests Conducted in %s\n(latest data: %s)' \
+              % (window,state_names[state],latest))
+    plt.xlabel('Report Date')
+    plt.ylabel('Tests Conducted')
+    plt.text(tests.index[-1],tests.rolling(window=7).mean()[-1],'{0:,.0f}'\
+        .format(tests.rolling(window=7).mean()[-1]),color='red')
+    ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    plt.xticks(rotation=30,ha='right')
+    plt.legend(loc='upper right')
+    plt.savefig('%s/testing_%s.png' % (savedir,state.lower()),bbox_inches='tight')
+    plt.close(fig)
+
+# positivity rate
+for state in set(testing_df['state']):
+    if not runpositivity:
+        break
+    if testmode and state != 'TX' or state in skipstates:
+        continue
+    print('%s: positivity' % state)
+    positivity = testing_df[(testing_df['state']==state) & \
+        (testing_df['overall_outcome']=='Positive')]['new_results_reported'] /  \
+        testing_df[(testing_df['state']==state)]['new_results_reported'].groupby(['date']).sum()
+    positivity_week =  testing_df[(testing_df['state']==state) & \
+        (testing_df['overall_outcome']=='Positive')]['new_results_reported'].rolling(window=7)\
+        .sum() /  testing_df[(testing_df['state']==state)]['new_results_reported'].groupby(['date'])\
+        .sum().rolling(window=7).sum()
+    fig,ax = plt.subplots(figsize=(12,8))
+    plt.bar(positivity.index[-window:],positivity[-window:]*100.0,color='blue',\
+        label='Positivity Rate')
+    plt.plot(positivity_week[-window:]*100.0,color='red',label='7-Day Moving Average',marker='o',\
+        markevery=[-1])
+    # plot aesthetics
+    plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
+    plt.grid(which='minor',axis='x',linestyle='--')
+    plt.grid(which='major',axis='y',linestyle='-')
+    latest = positivity.index[-1].strftime('%d %b %y')
+    plt.title('Last %i Days of Positivity Rate in %s\n(latest data: %s)' \
+              % (window,state_names[state],latest))
+    plt.xlabel('Report Date')
+    plt.ylabel('Positivity Rate')
+    plt.text(positivity_week.index[-1],positivity_week[-1]+2,'{0:,.1f}%'.\
+            format(positivity_week[-1]*100.0),color='red')
+    ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+    plt.ylim([0,50])
+    plt.yticks(np.arange(0,51,2))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
+    plt.xticks(rotation=30,ha='right')
+    plt.legend(loc='upper right')
+    plt.savefig('%s/positivity_%s.png' % (savedir,state.lower()),bbox_inches='tight')
+    plt.close(fig)
+
 print('Done')
