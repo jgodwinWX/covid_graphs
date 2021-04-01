@@ -7,9 +7,12 @@ import matplotlib.dates as mdates
 import matplotlib.ticker as mtick
 import datetime
 
+# window to view data (i.e. past x days)
+window = 180
+
 # debugging options
 pd.set_option('display.max_rows',50)
-debug = False
+debug = True
 
 # list of states and names
 states = ['01','02','04','05','06','08','09','10','12','13','15','16','17','18','19','20','21',\
@@ -100,21 +103,22 @@ for j,code in enumerate(county_code):
     dataset = covid_data[covid_data['fips'] == code]
     dataset['date'] = pd.to_datetime(dataset['date'],format='%Y-%m-%d')
     dataset['dailycases'] = dataset['cases'].diff()
-    dataset['weeklycases'] = dataset['dailycases'].rolling(window=7).sum()
-
-    plt.clf()
-    fig,ax = plt.subplots()
-    ax.plot(dataset['date'],dataset['weeklycases'],marker='o',markevery=dataset['weeklycases'].size-1,color='blue')
-    plt.text(dataset['date'].values[-1],dataset['weeklycases'].values[-1],'{0:,.0f}'.format(dataset['weeklycases'].values[-1]),color='blue')
+    dataset['dailycases'].mask(dataset['dailycases'] < 0,inplace=True)
+    dataset['weeklycases'] = dataset['dailycases'].rolling(window=7).mean()
+    fig,ax = plt.subplots(figsize=(12,8))
+    ax.bar(dataset['date'][-window:],dataset['dailycases'][-window:],color='blue',label='Daily Cases')
+    ax.plot(dataset['date'][-window:],dataset['weeklycases'][-window:],marker='o',markevery=[-1],color='red',label='7-Day Moving Average')
+    plt.text(dataset['date'].values[-1],dataset['weeklycases'].values[-1],'{0:,.0f}'.format(dataset['weeklycases'].values[-1]),color='red')
     plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
     plt.grid(which='minor',axis='x',linestyle='--')
     plt.grid(which='major',axis='y',linestyle='-')
-    plt.title('Week-over-Week COVID-19 Cases in County: %s\n(latest data: %s)' % (county_name[j],today))
+    plt.title('Daily COVID-19 Cases in County: %s\n(latest data: %s)' % (county_name[j],today))
     plt.xlabel('Date')
     ax.yaxis.set_major_formatter(mtick.FuncFormatter(lambda x,p: format(int(x),',')))
-    ax.set_ylabel('Week-over-Week Cases')
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
+    ax.set_ylabel('Confirmed Cases')
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%y'))
     ax.xaxis.set_major_locator(mdates.MonthLocator())
     ax.xaxis.set_minor_locator(mdates.DayLocator(bymonthday=(1,8,15,22)))
     plt.savefig('/var/www/html/images/covid/%s.png' % code,bbox_inches='tight')
+    plt.close(fig)
 print('Done.')
