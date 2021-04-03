@@ -385,7 +385,7 @@ if runpositivity:
         grouped by date to get the total number of reported tests.
         '''
         positivity = (testing_df[(testing_df['state']==state) & \
-            (testing_df['overall_outcome']=='Positive')]['new_results_reported'].sum()) / \
+            (testing_df['overall_outcome']=='Positive')]['new_results_reported']) / \
             (testing_df[(testing_df['state']==state)]['new_results_reported'].groupby(['date'])\
             .sum())
         # compute the 7-day moving positivity
@@ -403,9 +403,9 @@ if runpositivity:
             ['new_results_reported'].groupby(['date']).sum().rolling(window=7).sum())
         # plot the daily positivity and the 7-day moving positivity
         fig,ax = plt.subplots(figsize=(12,8))
-        plt.bar(positivity.index[-window:],positivity[-window:]*100.0,color='blue',\
+        plt.bar(positivity.index[-window:],positivity[-window:]*100,color='blue',\
             label='Positivity Rate')
-        plt.plot(positivity_week[-window:]*100.0,color='red',label='7-Day Moving Average',marker='o',\
+        plt.plot(positivity_week[-window:]*100,color='red',label='7-Day Moving Average',marker='o',\
             markevery=[-1])
         # plot aesthetics
         plt.grid(which='major',axis='x',linestyle='-',linewidth=2)
@@ -416,7 +416,7 @@ if runpositivity:
                   % (window,state_names[state],latest))
         plt.xlabel('Report Date')
         plt.ylabel('Positivity Rate')
-        plt.text(positivity_week.index[-1],positivity_week[-1]+2,'{0:,.1f}%'.\
+        plt.text(positivity_week.index[-1],positivity_week[-1]*100+2,'{0:,.1f}%'.\
                 format(positivity_week[-1]*100.0),color='red')
         ax.yaxis.set_major_formatter(mtick.PercentFormatter())
         plt.ylim([0,50])
@@ -428,7 +428,7 @@ if runpositivity:
         plt.legend(loc='upper right')
         plt.savefig('%s/positivity_%s.png' % (savedir,state.lower()),bbox_inches='tight')
         plt.close(fig)
-        # save off hospitalization data
+        # save off positivity data
         postoday,posweek,pos2week,posmonth,poschange,pos2change,pos30change = \
             trends(positivity_week,True)
         pos_trend.append(['%s' % state,'%0.1f%%' % (postoday*100),'%0.1f%%' % (posweek*100),\

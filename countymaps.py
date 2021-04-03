@@ -34,8 +34,8 @@ window = 180
 # debugging options
 #pd.set_option('display.max_rows',50)
 debug = False
-plotcounties = True 
-statemaps = True 
+plotcounties = False
+statemaps = False
 metroplots = True
 
 # list of states and names
@@ -227,7 +227,7 @@ print('Drawing heatmap')
 hmdata = pd.read_csv('/var/www/html/images/covid/metro_trends.csv')
 hmdata.set_index('metro area',inplace=True)
 columns = ['7-day trend','14-day trend','30-day trend']
-fig,ax = plt.subplots(figsize=(10,20))
+fig,ax = plt.subplots(figsize=(5,10))
 ax = seaborn.heatmap(hmdata[columns]*100,annot=True,fmt='.1f',cbar_kws={'shrink':0.5,'orientation':\
     'vertical','format':'%.1f%%','extend':'both'},vmin=-50.0,vmax=50.0,cmap='RdBu_r',linewidths=1,\
     linecolor='white')
