@@ -3,6 +3,7 @@
 Created on Mon Mar 29 15:27:30 2021
 
 @author: Jason W. Godwin
+
 """
 
 import csv
@@ -76,8 +77,10 @@ em['week_ending_date'] = pd.to_datetime(em['week_ending_date'],format='%Y-%m-%d'
 em.set_index('week_ending_date',inplace=True)
 
 # hospitalization data from HHS
+# This is broken and due to poor documentation from API maintainers, I am unsure as to how
+# to request the right range of data. Any feedback/help is appreciated.
 hhs_client = Socrata('healthdata.gov',None)
-hhs_results = hhs_client.get('g62h-syeh',limit=50000)
+hhs_results = hhs_client.get('g62h-syeh',order='date',offset=15000,limit=10000)
 hhs_df = pd.DataFrame.from_records(hhs_results)
 hhs_df.sort_values('date',inplace=True)
 hhs_df['date'] = pd.to_datetime(hhs_df['date'],format='%Y-%m-%dT%H:%M:%S.000')
@@ -88,7 +91,7 @@ for field in fields:
 hhs_df['inpatient_bed_covid_utilization'] = hhs_df['inpatient_bed_covid_utilization'] * 100.0
 
 # testing data from HHS
-testing_results = hhs_client.get('j8mb-icvb',limit=70000)
+testing_results = hhs_client.get('j8mb-icvb',limit=80000)
 testing_df = pd.DataFrame.from_records(testing_results)
 testing_df.sort_values('date',inplace=True)
 testing_df['date'] = pd.to_datetime(testing_df['date'],format='%Y-%m-%dT%H:%M:%S.000')

@@ -34,8 +34,8 @@ window = 180
 # debugging options
 #pd.set_option('display.max_rows',50)
 debug = False
-plotcounties = False
-statemaps = False
+plotcounties = True 
+statemaps = True 
 metroplots = True
 
 # list of states and names
